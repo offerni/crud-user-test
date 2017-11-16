@@ -6,6 +6,7 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -36,7 +37,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+
     }
 
     /**
@@ -62,10 +63,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+//        if($data->hasFile('url')){ // Tratamento de imagem
+//            $imagem = $data->file('url');
+//            $num = rand(1111, 9999);
+//            $dir = "img/Usuarios";
+//            $ex = $imagem->guessClientExtension();
+//            $nomeImagem = "url_".$num.".".$ex;
+//            $imagem->move($dir, $nomeImagem);
+//            $dados['url'] = $dir."/".$nomeImagem;
+//        }
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'endereco' => ($data['endereco']),
+            'data_nascimento' => ($data['data_nascimento']),
+            'cpf' => ($data['cpf']),
+            'url' => ($data['url']),
         ]);
     }
 }

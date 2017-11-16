@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'endereco', 'data_nascimento', 'cpf', 'img_url'
     ];
 
     /**
@@ -28,6 +28,6 @@ class User extends Authenticatable
     ];
 
     public function contatos(){
-        return $this->hasMany('crudUsuario\Contato'); // relação 1:N
+        return $this->hasMany('App\Contato'); // relação 1:N
     }
 }

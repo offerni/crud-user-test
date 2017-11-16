@@ -18,9 +18,10 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('endereco')->nullable(); // REMOVER O NULLABLE, TESTE\!
+            $table->string('endereco');
             $table->date('data_nascimento')->nullable();
-            $table->string('cpf',11)->nullable(); // REMOVER O NULLABLE, TESTE\!
+            $table->string('cpf',14);
+            $table->string('img_url');
             $table->rememberToken();
             $table->timestamps();
         });

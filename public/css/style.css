@@ -1,0 +1,10 @@
+.contato-scroll{
+    height: 283px;
+    overflow-y: scroll;
+}
+
+.invalido {
+    display: none;
+}
+
+/*style="height: 283px; overflow-y: scroll"*/
