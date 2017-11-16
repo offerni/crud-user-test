@@ -27,11 +27,12 @@
                     <li class="list-group-item list-group-item-primary">{{$registro->endereco}}</li>
                     <li class="list-group-item list-group-item-primary">{{date('d/m/Y', strtotime($registro->data_nascimento))}}</li>
                     <li class="list-group-item list-group-item-primary">{{$registro->cpf}}</li>
-
-                    <li class="d-flex">
-                        <a class="btn btn-warning col-sm-6" href="{{route('usuario.editar', $registro->id)}}">Atualizar</a>
-                        <a class="btn btn-danger col-sm-6" href="{{route('usuario.deletar', $registro->id)}}">Deletar</a>
-                    </li>
+                    @if(!Auth::guest())
+                        <li class="d-flex">
+                            <a class="btn btn-warning col-sm-6" href="{{route('usuario.editar', $registro->id)}}">Atualizar</a>
+                            <a class="btn btn-danger col-sm-6" href="{{route('usuario.deletar', $registro->id)}}">Deletar</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
             <div class="form-group col-sm-6 contato-scroll" >
@@ -43,7 +44,9 @@
                         <th></th>
                         <th scope="col">Email</th>
                         <th scope="col">Telefone</th>
-                        <th class="d-flex justify-content-end"> <a class="btn btn-outline-primary btn-sm" href="{{route('contato.adicionar', $registro->id)}}"><span class="oi oi-plus"></span></a>  </th>
+                        @if(!Auth::guest())
+                            <th class="d-flex justify-content-end"> <a class="btn btn-outline-primary btn-sm" href="{{route('contato.adicionar', $registro->id)}}"><span class="oi oi-plus"></span></a>  </th>
+                        @endif
                     </tr>
                     </thead>
                     <tbody>
@@ -53,10 +56,12 @@
                         <th scope="row">{{$num++}}</th>
                         <td>{{$contato->email}}</td>
                         <td>{{$contato->telefone}}</td>
-                        <td class="d-flex">
-                            <a class="btn btn-warning col-sm-6 btn-sm" href="{{route('contato.editar', $contato->id)}}">Atualizar</a>
-                            <a class="btn btn-danger col-sm-6 btn-sm" href="{{route('contato.deletar', $contato->id)}}">Deletar</a>
-                        </td>
+                        @if(!Auth::guest())
+                            <td class="d-flex">
+                                <a class="btn btn-warning col-sm-6 btn-sm" href="{{route('contato.editar', $contato->id)}}">Atualizar</a>
+                                <a class="btn btn-danger col-sm-6 btn-sm" href="{{route('contato.deletar', $contato->id)}}">Deletar</a>
+                            </td>
+                        @endif
                     </tr>
                     @endforeach
                     </tbody>
@@ -65,8 +70,8 @@
             @endforeach
     </div>
     @if(!Auth::guest())
-    <a href="{{route('register')}}" class="btn btn-primary">Adicionar novo Usuário</a>
-        @endif
+        <a href="{{route('register')}}" class="btn btn-primary">Adicionar novo Usuário</a>
+    @endif
 </div>
 
 @endsection

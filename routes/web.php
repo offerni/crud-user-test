@@ -23,11 +23,12 @@ Auth::routes();
 
 Route::get('/index',['as'=>'index','uses'=>'UsuarioController@index']); // Vai para o controller da página principal
 Route::get('/home', ['as'=>'home', 'uses'=>'UsuarioController@index']);
+Route::post('/usuario/salvar', ['as' => 'usuario.salvar', 'uses' => 'UsuarioController@salvar']); // rota controller salvar
 
 Route::group(['middleware'=>'auth'], function() {
 //USUÁRIOS
 
-    Route::post('/usuario/salvar', ['as' => 'usuario.salvar', 'uses' => 'UsuarioController@salvar']); // rota controller salvar
+
     Route::get('/usuario/editar/{id}', ['as' => 'usuario.editar', 'uses' => 'UsuarioController@editar']); // rota view editar
     Route::put('/usuario/atualizar/{id}', ['as' => 'usuario.atualizar', 'uses' => 'UsuarioController@atualizar']); // rota controller atualizar
     Route::get('/usuario/deletar/{id}', ['as' => 'usuario.deletar', 'uses' => 'UsuarioController@deletar']); // rota view deletar

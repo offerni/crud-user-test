@@ -9,7 +9,7 @@ use App\User;
 class UsuarioController extends Controller
 {
     public function index(){
-        $registros = User::all();
+        $registros = User::all(); // registros da tabela Users do DB
         return view('index', compact('registros'));
     }
 
@@ -19,8 +19,8 @@ class UsuarioController extends Controller
         $dados['password'] = bcrypt($dados['password']); // criptografa o password.
         $dados['password_confirmation'] = bcrypt($dados['password']); // criptografa o password_confirmation.
 
-        if ($dados['data_nascimento']) {
-            list($day, $month, $year) = sscanf($dados['data_nascimento'], "%d/%d/%d");
+        if ($dados['data_nascimento']) { // concatena o 0 aos dias de 1 dígito
+            list($day, $month, $year) = sscanf($dados['data_nascimento'], "%d/%d/%d"); // altera o formato para o padrão do DB
 
             if ($day < 10) {
                 $day = 0 . $day;
@@ -56,7 +56,7 @@ class UsuarioController extends Controller
     public function atualizar(Request $req, $id){
         $dados = $req->all();
 
-        if ($dados['data_nascimento']) {
+        if ($dados['data_nascimento']) { // concatena o 0 aos dias de 1 dígito
             list($day, $month, $year) = sscanf($dados['data_nascimento'], "%d/%d/%d");
 
             if ($day < 10) {

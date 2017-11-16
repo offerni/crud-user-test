@@ -13,7 +13,7 @@ class ContatoController extends Controller
         return view('contatos.adicionar', compact('id'));
     }
 
-    public function salvar(Request $req, $id){
+    public function salvar(Request $req, $id){ // encontra o id do usuario e salva os dados do contato vinculado a ele
         $dados = $req->all();
         $user = User::find($id);
         $user->contatos()->create($dados);

@@ -1,14 +1,14 @@
-if ($('[name="data_nascimento"]').length) {
+if ($('[name="data_nascimento"]').length) { // verifica se existe o input data_nascimento
     new Cleave('[name="data_nascimento"]', {
         date: true,
-        datePattern: ['d', 'm', 'Y']
+        datePattern: ['d', 'm', 'Y'] // formata a data
     });
 }
 
 
 var cpf = $('[name="cpf"]');
 
-function checkCpf() {
+function checkCpf() { // se o campo do cpf possuir 14 digitos a msg desaparece, caso contrário, exibe msg cpf inválido
     value = cpf.val();
 
     if (value.length < 14) {
@@ -25,10 +25,9 @@ if (cpf.length) {
         numericOnly: true
     });
 
-
     checkCpf();
 
-    cpf.on('blur', function () {
+    cpf.on('blur', function () { // chama a function checkCpf() on blur
         checkCpf();
     });
 
